@@ -15,6 +15,46 @@ use Jiannei\EasyGithub\Api;
 
 class RepositoriesApi extends Api
 {
+    private $owner;
+
+    private $repo;
+
+    /**
+     * RepositoriesApi constructor.
+     *
+     * @param $owner
+     * @param $repo
+     */
+    public function __construct($owner = '', $repo = '')
+    {
+        $this->owner = $owner;
+        $this->repo = $repo;
+    }
+
+
+    public function create(...$args)
+    {
+        $this->setHeaders([
+                'Accept'        => 'application/json',
+                'Authorization' => 'Bearer '.$this->githubToken,
+            ]
+        );
+        $this->formatOptions('body', json_encode($args));
+
+        return $this->request('POST', 'https://api.github.com/user/repos');
+    }
+
+    public function delete($args)
+    {
+        $this->setHeaders([
+                'Accept'        => 'application/json',
+                'Authorization' => 'Bearer '.$this->githubToken,
+            ]
+        );
+
+        return $this->request('DELETE', "https://api.github.com/repos/{$this->owner}/{$this->repo}", $args);
+    }
+
     public function contents($owner, $repo, $path = '')
     {
         return new ContentsApi($owner, $repo, $path);
