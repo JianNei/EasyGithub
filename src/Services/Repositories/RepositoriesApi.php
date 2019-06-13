@@ -31,11 +31,10 @@ class RepositoriesApi extends Api
         $this->repo = $repo;
     }
 
-
     public function create(...$args)
     {
         $this->setHeaders([
-                'Accept'        => 'application/json',
+                'Accept' => 'application/json',
                 'Authorization' => 'Bearer '.$this->githubToken,
             ]
         );
@@ -47,7 +46,7 @@ class RepositoriesApi extends Api
     public function delete($args)
     {
         $this->setHeaders([
-                'Accept'        => 'application/json',
+                'Accept' => 'application/json',
                 'Authorization' => 'Bearer '.$this->githubToken,
             ]
         );
