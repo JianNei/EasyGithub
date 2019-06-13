@@ -38,7 +38,7 @@ class PagesApi extends Api
         $this->setHeaders([
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/vnd.github.switcheroo-preview+json',
-                'Authorization' => 'Bearer '.$this->githubToken['access_token'],
+                'Authorization' => 'Bearer '.$this->githubToken,
             ]
         );
         $this->formatOptions('body', json_encode($args, 320));
@@ -52,7 +52,7 @@ class PagesApi extends Api
         $this->setHeaders([
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/vnd.github.switcheroo-preview+json',
-                'Authorization' => 'Bearer '.$this->githubToken['access_token'],
+                'Authorization' => 'Bearer '.$this->githubToken,
             ]
         );
 

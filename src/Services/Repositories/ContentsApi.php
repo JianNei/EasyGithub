@@ -75,7 +75,7 @@ class ContentsApi extends Api
     {
         $this->setHeaders([
                 'Accept' => 'application/json',
-                'Authorization' => 'Bearer '.$this->githubToken['access_token'],
+                'Authorization' => 'Bearer '.$this->githubToken,
             ]
         );
         $this->formatOptions('body', json_encode($args));
@@ -88,7 +88,7 @@ class ContentsApi extends Api
     {
         $this->setHeaders([
                 'Accept' => 'application/json',
-                'Authorization' => 'Bearer '.$this->githubToken['access_token'],
+                'Authorization' => 'Bearer '.$this->githubToken,
             ]
         );
         $this->formatOptions('body', json_encode($args));

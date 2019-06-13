@@ -32,7 +32,9 @@ class OAuthAppsAuthorizeApi extends Api
         $options = is_array(current($args)) ? current($args) : [$args[0] => $args[1]];
 
         $res = $this->request('GET', 'https://api.github.com/user', $args);
-        $owner = isset($res['name']) && $res['name'] ? $res['name'] : $res['login'];
+        $tmp = $res->toArray();
+
+        $owner = isset($tmp['name']) && $tmp['name'] ? $tmp['name'] : $tmp['login'];
 
         $this->setGithubToken($owner, $options['access_token']);
         $this->setGithubUser($owner, $res);

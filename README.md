@@ -8,7 +8,62 @@ $ composer require jiannei/easy-github -vvv
 
 ## Usage
 
-TODO
+### For Laravel
+
+```php
+use Jiannei\EasyGithub\Client as GithubClient;
+
+// 获取某用户的所有仓库 
+$result = app(GithubClient::class)->user('Jiannei')->repos();
+
+// Oauth Apps 授权
+$result = app(GithubClient::class)->oauthApp()->accessToken([
+    'code'          => 'oauth code',// Github 返回的授权码
+    'client_id'     => 'your oauth app client_id',// Github Oauth app
+    'client_secret' => 'your oauth app client_secret',// Github Oauth app
+]);
+
+// 获取当前授权的用户信息
+$result = app(GithubClient::class)->oauthApp()->user('access_token', 'xxxxxxx');
+$result = app(GithubClient::class)->oauthApp()->user(['access_token' => 'xxxxxxx'])
+
+// 获取用户仓库的 readme 信息
+$result = app(GithubClient::class)->repository()->contents('Jiannei', 'EasyGithub')->readme();
+
+// 在仓库下创建文件
+$result = app(GithubClient::class)->repository()->contents('Jiannei', 'EasyGithub', 'test.md')->create([
+    'message' => '测试',
+    'content' => base64_encode('# 测试'),
+    'branch'  => 'master',
+]);
+
+// 查找文件（sha）
+$result = app(GithubClient::class)->repository()->contents('Jiannei', 'test', 'test.md')->show();
+
+// 删除文件
+$fileInfo = $result->toArray();// 需要上一步查找文件得到的 sha 值
+$result = app(GithubClient::class)->repository()->contents('Jiannei', 'test', 'test.md')->delete([
+    'message' => 'delete',
+    'sha'     => $fileInfo['sha'],
+    'branch'  => 'master',
+]);
+
+// 启用 page site
+$result = app(GithubClient::class)->repository()->pages('Jiannei', 'test')->enable([
+    'source' => [
+        'branch' => 'master',
+        'path'   => '/docs',
+    ],
+]);
+
+// 禁用 page site
+$result = app(GithubClient::class)->repository()->pages('Jiannei', 'test')->disable();
+
+// 查询 git data 信息 （Git commit SHA-1 hash）
+$result = app(GithubClient::class)->gitData()->references('JianNei', 'test', 'heads/master')->show();
+
+dd($result->toArray());
+```
 
 ## Contributing
 

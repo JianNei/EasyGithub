@@ -34,6 +34,7 @@ trait HttpClient
 
     // response
     protected $response = null;
+    protected $contents = null;
 
     // ------------- request -----------------
     protected function setHeaders($headers)
@@ -55,7 +56,7 @@ trait HttpClient
 
     private function mergeOptions($args)
     {
-        if ($this->hasFormatted || !$args) {
+        if ($this->hasFormatted || ! $args) {
             return $this->options;
         }
 
@@ -95,28 +96,33 @@ trait HttpClient
             throw new HttpException($e->getMessage(), 0, $e);
         }
 
+        if ($this->status() != 204) {
+            $this->contents = $this->response->getBody()->getContents();
+        } else {
+            $this->contents = json_encode([]);
+        }
+
         return $this;
     }
 
     private function log(array $something, $type = 'response')
     {
-        error_log("{$type}: ".json_encode($something), 3, 'api.log');
+        // error_log("{$type}: ".json_encode($something), 3, 'api.log');
         //Log::channel($this->logChannel)->info($type, $something);
     }
 
     //  -------------------- response
     public function toRaw()
     {
-        $contents = $this->response->getBody()->getContents();
+        // $contents = $this->response->getBody()->getContents();
+        $this->log(['status' => $this->status(), 'contents' => $this->contents], 'response');
 
-        $this->log(['status' => $this->status(), 'contents' => $contents], 'response');
-
-        return $contents;
+        return $this->contents;
     }
 
     public function toArray()
     {
-        $contents = json_decode($this->response->getBody()->getContents(), true);
+        $contents = json_decode($this->contents, true);
         if (JSON_ERROR_NONE !== json_last_error()) {
             throw new \RuntimeException(sprintf(
                 'Failed to read response from "%s" as JSON: %s.',

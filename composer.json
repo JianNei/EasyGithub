@@ -15,5 +15,12 @@
         "psr-4": {
             "Jiannei\\EasyGithub\\": "src"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jiannei\\EasyGithub\\Providers\\ServiceProvider"
+            ]
+        }
     }
 }
