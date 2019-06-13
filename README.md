@@ -10,6 +10,12 @@ $ composer require jiannei/easy-github -vvv
 
 ### For Laravel
 
+**config**
+
+```
+php artisan vendor:publish --provider="Jiannei\EasyGithub\Providers\LaravelServiceProvider"
+```
+
 ```php
 use Jiannei\EasyGithub\Client as GithubClient;
 
@@ -61,6 +67,15 @@ $result = app(GithubClient::class)->repository()->pages('Jiannei', 'test')->disa
 
 // 查询 git data 信息 （Git commit SHA-1 hash）
 $result = app(GithubClient::class)->gitData()->references('JianNei', 'test', 'heads/master')->show();
+
+// 创建仓库
+$result = app(GithubClient::class)->repository('Jiannei')->create([
+    'name'        => 'Hello-World',
+    "description" => "This is your first repository",
+]);
+
+// 删除仓库
+ $result = app(GithubClient::class)->repository('Jiannei','Hello-World')->delete();
 
 dd($result->toArray());
 ```

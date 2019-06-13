@@ -25,13 +25,14 @@ class RepositoriesApi extends Api
      * @param $owner
      * @param $repo
      */
-    public function __construct($owner = '', $repo = '')
+    public function __construct($owner, $repo)
     {
         $this->owner = $owner;
         $this->repo = $repo;
+        $this->getGithubToken($this->owner);
     }
 
-    public function create(...$args)
+    public function create($args)
     {
         $this->setHeaders([
                 'Accept' => 'application/json',
@@ -43,7 +44,7 @@ class RepositoriesApi extends Api
         return $this->request('POST', 'https://api.github.com/user/repos');
     }
 
-    public function delete($args)
+    public function delete()
     {
         $this->setHeaders([
                 'Accept' => 'application/json',
@@ -51,7 +52,7 @@ class RepositoriesApi extends Api
             ]
         );
 
-        return $this->request('DELETE', "https://api.github.com/repos/{$this->owner}/{$this->repo}", $args);
+        return $this->request('DELETE', "https://api.github.com/repos/{$this->owner}/{$this->repo}");
     }
 
     public function contents($owner, $repo, $path = '')
