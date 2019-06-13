@@ -16,7 +16,9 @@ use Jiannei\EasyGithub\Api;
 class ReferencesApi extends Api
 {
     private $owner;
+
     private $repo;
+
     private $ref;
 
     /**

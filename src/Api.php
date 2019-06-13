@@ -16,5 +16,6 @@ use Jiannei\EasyGithub\utils\OauthTrait;
 
 class Api
 {
-    use HttpClient,OauthTrait;
+    use HttpClient;
+    use OauthTrait;
 }

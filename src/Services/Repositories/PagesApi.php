@@ -16,6 +16,7 @@ use Jiannei\EasyGithub\Api;
 class PagesApi extends Api
 {
     private $owner;
+
     private $repo;
 
     /**
@@ -35,8 +36,8 @@ class PagesApi extends Api
     {
         // https://developer.github.com/v3/repos/pages/#enable-a-pages-site
         $this->setHeaders([
-                'Content-Type'  => 'application/json',
-                'Accept'        => 'application/vnd.github.switcheroo-preview+json',
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/vnd.github.switcheroo-preview+json',
                 'Authorization' => 'Bearer '.$this->githubToken['access_token'],
             ]
         );
@@ -49,8 +50,8 @@ class PagesApi extends Api
     {
         // https://developer.github.com/v3/repos/pages/#disable-a-pages-site
         $this->setHeaders([
-                'Content-Type'  => 'application/json',
-                'Accept'        => 'application/vnd.github.switcheroo-preview+json',
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/vnd.github.switcheroo-preview+json',
                 'Authorization' => 'Bearer '.$this->githubToken['access_token'],
             ]
         );

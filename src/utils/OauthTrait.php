@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Jiannei\EasyGithub\utils;
 
 use Cache;
@@ -9,6 +8,7 @@ use Carbon\Carbon;
 trait OauthTrait
 {
     protected $githubToken;
+
     protected $githubUser;
 
     protected function getGithubToken($owner, $key = '')
@@ -21,6 +21,7 @@ trait OauthTrait
     protected function getGithubUser($owner, $key = '')
     {
         $this->githubUser = Cache::get("github.{$owner}.user");
+
         return $this->githubUser && isset($this->githubUser[$key]) ? $this->githubUser[$key] : null;
     }
 

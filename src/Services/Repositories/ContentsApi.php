@@ -16,7 +16,9 @@ use Jiannei\EasyGithub\Api;
 class ContentsApi extends Api
 {
     private $owner;
+
     private $repo;
+
     private $path;
 
     private $customMediaType = 'object';
@@ -24,9 +26,9 @@ class ContentsApi extends Api
     /**
      * ContentsApi constructor.
      *
-     * @param  string  $owner
-     * @param  string  $repo
-     * @param  string  $path
+     * @param string $owner
+     * @param string $repo
+     * @param string $path
      */
     public function __construct($owner, $repo, $path)
     {
@@ -72,7 +74,7 @@ class ContentsApi extends Api
     public function update($args)
     {
         $this->setHeaders([
-                'Accept'        => 'application/json',
+                'Accept' => 'application/json',
                 'Authorization' => 'Bearer '.$this->githubToken['access_token'],
             ]
         );
@@ -85,7 +87,7 @@ class ContentsApi extends Api
     public function delete($args)
     {
         $this->setHeaders([
-                'Accept'        => 'application/json',
+                'Accept' => 'application/json',
                 'Authorization' => 'Bearer '.$this->githubToken['access_token'],
             ]
         );

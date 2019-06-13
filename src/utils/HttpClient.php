@@ -18,14 +18,18 @@ trait HttpClient
 {
     // request
     protected $options = [];
+
     private $optionsFormat;
+
     private $hasFormatted = false;
 
     private $uri;
+
     private $method;
 
     // client
     private $clientOptions = [];
+
     private $logChannel = 'api';
 
     // response
