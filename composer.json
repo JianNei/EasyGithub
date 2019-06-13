@@ -1,0 +1,19 @@
+{
+    "name": "jiannei\/easy-github",
+    "description": "Github Api V3 wrapper.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "JianNei",
+            "email": "longjian.huang@aliyun.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jiannei\\EasyGithub\\": "src"
+        }
+    }
+}
