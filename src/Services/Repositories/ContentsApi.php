@@ -48,7 +48,7 @@ class ContentsApi extends Api
         $this->customMediaType = "application/vnd.github.VERSION.{$this->customMediaType}";
     }
 
-    public function show(...$args)
+    public function get(...$args)
     {
         $this->setCustomMedia();
         $this->setHeaders(['Accept' => $this->customMediaType]);
