@@ -34,6 +34,7 @@ trait HttpClient
 
     // response
     protected $response = null;
+
     protected $contents = null;
 
     // ------------- request -----------------
@@ -56,7 +57,7 @@ trait HttpClient
 
     private function mergeOptions($args)
     {
-        if ($this->hasFormatted || ! $args) {
+        if ($this->hasFormatted || !$args) {
             return $this->options;
         }
 
@@ -96,7 +97,7 @@ trait HttpClient
             throw new HttpException($e->getMessage(), 0, $e);
         }
 
-        if ($this->status() != 204) {
+        if (204 != $this->status()) {
             $this->contents = $this->response->getBody()->getContents();
         } else {
             $this->contents = json_encode([]);
