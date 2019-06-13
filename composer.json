@@ -19,7 +19,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Jiannei\\EasyGithub\\Providers\\ServiceProvider"
+                "Jiannei\\EasyGithub\\Providers\\LaravelServiceProvider"
             ]
         }
     }

@@ -12,9 +12,9 @@
 namespace Jiannei\EasyGithub\Providers;
 
 use Jiannei\EasyGithub\Client as GithubClient;
-use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
-class ServiceProvider extends BaseServiceProvider
+class LaravelServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -29,7 +29,7 @@ class ServiceProvider extends BaseServiceProvider
     public function register()
     {
         $this->app->singleton(GithubClient::class, function () {
-            return new GithubClient(config('github'));
+            return new GithubClient();
         });
 
         $this->app->alias(GithubClient::class, 'Github');
@@ -38,7 +38,7 @@ class ServiceProvider extends BaseServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/easy-github.php' => config_path('easy-github.php'),
+            __DIR__.'/config/easy-github.php' => config_path('easy-github.php'),
         ], 'config');
     }
 
