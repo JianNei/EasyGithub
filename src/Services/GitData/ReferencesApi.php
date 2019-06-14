@@ -42,4 +42,18 @@ class ReferencesApi extends Api
 
         return $this->request('GET', "https://api.github.com/repos/{$this->owner}/{$this->repo}/git/refs/{$this->ref}", $args);
     }
+
+    public function create($args)
+    {
+        $this->authorize('Docs.ApiV3.GitData.References.create', $this->owner);
+
+        $this->setHeaders([
+                'Accept'        => 'application/json',
+                'Authorization' => 'Bearer '.$this->githubToken['access_token'],
+            ]
+        );
+        $this->formatOptions('body', json_encode($args, 320));
+
+        return $this->request('POST', "https://api.github.com/repos/{$this->owner}/{$this->repo}/git/refs");
+    }
 }

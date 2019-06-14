@@ -20,6 +20,8 @@ $ composer require jiannei/easy-github -vvv
 php artisan vendor:publish --provider="Jiannei\EasyGithub\Providers\LaravelServiceProvider"
 ```
 
+**create/delete 方法参数只支持数组**
+
 ```php
 use Jiannei\EasyGithub\Client as GithubClient;
 
@@ -87,6 +89,15 @@ $result = app(GithubClient::class)->repository('Jiannei')->create([
 
 // 删除仓库
  $result = app(GithubClient::class)->repository('Jiannei','Hello-World')->delete();
+
+// 创建分支
+$result = app(GithubClient::class)->gitData()->references('JianNei', 'test', 'heads/master')->get();
+$res = $result->toArray();
+$result = app(GithubClient::class)->gitData()->references('Jiannei', 'test', 'heads/master')->create([
+    'ref' => 'refs/heads/gh-pages',
+    'sha' => $res['object']['sha'],
+]);
+
 
 dd($result->toArray());
 ```
