@@ -35,7 +35,7 @@ class ReferencesApi extends Api
         $this->ref = $ref;
     }
 
-    public function show(...$args)
+    public function get(...$args)
     {
         $this->setHeaders(['Accept' => 'application/json']);
         $this->formatOptions('query');

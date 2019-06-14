@@ -35,10 +35,12 @@ class PagesApi extends Api
     public function enable($args)
     {
         // https://developer.github.com/v3/repos/pages/#enable-a-pages-site
+        $this->authorize("Docs.ApiV3.Repositories.Pages.enablePagesSite", $this->owner);
+
         $this->setHeaders([
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/vnd.github.switcheroo-preview+json',
-                'Authorization' => 'Bearer '.$this->githubToken,
+                'Content-Type'  => 'application/json',
+                'Accept'        => 'application/vnd.github.switcheroo-preview+json',
+                'Authorization' => 'Bearer '.$this->githubToken['access_token'],
             ]
         );
         $this->formatOptions('body', json_encode($args, 320));
@@ -49,10 +51,12 @@ class PagesApi extends Api
     public function disable()
     {
         // https://developer.github.com/v3/repos/pages/#disable-a-pages-site
+        $this->authorize("Docs.ApiV3.Repositories.Pages.disablePagesSite", $this->owner);
+
         $this->setHeaders([
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/vnd.github.switcheroo-preview+json',
-                'Authorization' => 'Bearer '.$this->githubToken,
+                'Content-Type'  => 'application/json',
+                'Accept'        => 'application/vnd.github.switcheroo-preview+json',
+                'Authorization' => 'Bearer '.$this->githubToken['access_token'],
             ]
         );
 

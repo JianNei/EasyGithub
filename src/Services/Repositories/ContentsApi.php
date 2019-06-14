@@ -26,9 +26,9 @@ class ContentsApi extends Api
     /**
      * ContentsApi constructor.
      *
-     * @param string $owner
-     * @param string $repo
-     * @param string $path
+     * @param  string  $owner
+     * @param  string  $repo
+     * @param  string  $path
      */
     public function __construct($owner, $repo, $path)
     {
@@ -73,9 +73,11 @@ class ContentsApi extends Api
 
     public function update($args)
     {
+        $this->authorize("Docs.ApiV3.Repositories.Contents.update", $this->owner);
+
         $this->setHeaders([
-                'Accept' => 'application/json',
-                'Authorization' => 'Bearer '.$this->githubToken,
+                'Accept'        => 'application/json',
+                'Authorization' => 'Bearer '.$this->githubToken['access_token'],
             ]
         );
         $this->formatOptions('body', json_encode($args));
@@ -86,9 +88,11 @@ class ContentsApi extends Api
 
     public function delete($args)
     {
+        $this->authorize("Docs.ApiV3.Repositories.Contents.delete", $this->owner);
+
         $this->setHeaders([
-                'Accept' => 'application/json',
-                'Authorization' => 'Bearer '.$this->githubToken,
+                'Accept'        => 'application/json',
+                'Authorization' => 'Bearer '.$this->githubToken['access_token'],
             ]
         );
         $this->formatOptions('body', json_encode($args));

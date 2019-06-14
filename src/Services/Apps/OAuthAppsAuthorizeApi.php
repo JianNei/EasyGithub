@@ -16,7 +16,7 @@ use Jiannei\EasyGithub\Api;
 class OAuthAppsAuthorizeApi extends Api
 {
     // https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/
-    public function accessToken(...$args)
+    public function accessToken($args)
     {
         $this->setHeaders(['Accept' => 'application/json']);
         $this->formatOptions('form_params');
@@ -29,16 +29,19 @@ class OAuthAppsAuthorizeApi extends Api
         $this->setHeaders(['Accept' => 'application/json']);
         $this->formatOptions('query');
 
-        $options = is_array(current($args)) ? current($args) : [$args[0] => $args[1]];
+        return $this->request('GET', 'https://api.github.com/user', $args);
+    }
 
-        $res = $this->request('GET', 'https://api.github.com/user', $args);
-        $tmp = $res->toArray();
+    public function oauth($args)
+    {
+        $githubToken = $this->accessToken($args)->toArray();
+        $githubUser = $this->user($githubToken)->toArray();
 
-        $owner = isset($tmp['name']) && $tmp['name'] ? $tmp['name'] : $tmp['login'];
+        $username = isset($githubUser['name']) && $githubUser['name'] ? $githubUser['name'] : $githubUser['login'];
 
-        $this->setGithubToken($owner, $options['access_token']);
-        $this->setGithubUser($owner, $res);
+        $this->setGithubUser($username, $githubToken);
+        $this->setGithubToken($username, $githubToken);
 
-        return $res;
+        return $this->contents;
     }
 }

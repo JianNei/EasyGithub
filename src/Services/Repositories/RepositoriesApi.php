@@ -34,9 +34,11 @@ class RepositoriesApi extends Api
 
     public function create($args)
     {
+        $this->authorize("Docs.ApiV3.Repositories.create", $this->owner);
+
         $this->setHeaders([
-                'Accept' => 'application/json',
-                'Authorization' => 'Bearer '.$this->githubToken,
+                'Accept'        => 'application/json',
+                'Authorization' => 'Bearer '.$this->githubToken['access_token'],
             ]
         );
         $this->formatOptions('body', json_encode($args));
@@ -47,8 +49,8 @@ class RepositoriesApi extends Api
     public function delete()
     {
         $this->setHeaders([
-                'Accept' => 'application/json',
-                'Authorization' => 'Bearer '.$this->githubToken,
+                'Accept'        => 'application/json',
+                'Authorization' => 'Bearer '.$this->githubToken['access_token'],
             ]
         );
 

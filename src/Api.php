@@ -18,4 +18,14 @@ class Api
 {
     use HttpClient;
     use OauthTrait;
+
+    protected function setHeaders($headers)
+    {
+        $default_headers = [
+            'Accept'     => 'application/vnd.github.v3+json',
+            'User-Agent' => 'EasyGithub',
+            'Time-Zone'  => 'Asia/Shanghai',
+        ];
+        $this->options = array_merge($this->options, ['headers' => array_merge($default_headers, $headers)]);
+    }
 }
