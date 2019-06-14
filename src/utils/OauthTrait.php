@@ -18,16 +18,16 @@ trait OauthTrait
     {
         $this->githubApi = config("easy-github.{$api}");
         if (isset($this->githubApi['scope']) && $this->githubApi['scope']) {
-            return true;// 需要授权
+            return true; // 需要授权
         }
 
-        return false;// 不需要授权
+        return false; // 不需要授权
     }
 
     private function verifyAuthorization($username)
     {
-        $this->getGithubToken($username);// 校验 token 是否存在，是否过期
-        if (! $this->githubToken || ! isset($this->githubToken['scope']) || ! $this->githubToken['scope']) {
+        $this->getGithubToken($username); // 校验 token 是否存在，是否过期
+        if (!$this->githubToken || !isset($this->githubToken['scope']) || !$this->githubToken['scope']) {
             throw new Exception('Unauthorized', 401);
         }
 
@@ -38,7 +38,7 @@ trait OauthTrait
         $wait_verify_scope = explode(',', $this->githubApi['scope']);
         $auth_scope_list = explode(',', $this->githubToken['scope']);
         foreach ($wait_verify_scope as $item) {
-            if (! in_array($item, $auth_scope_list)) {
+            if (!in_array($item, $auth_scope_list)) {
                 throw new Exception('Unauthorized', 401);
             }
         }
@@ -48,7 +48,7 @@ trait OauthTrait
 
     protected function authorize($api, $username = '')
     {
-        if (! $this->requiredAuthorization($api)) {
+        if (!$this->requiredAuthorization($api)) {
             return true;
         }
 

@@ -11,20 +11,20 @@
 
 return [
     'OauthApp' => [
-        'client_id'     => env('GITHUB_CLIENT_ID', 'your-app-id'),
+        'client_id' => env('GITHUB_CLIENT_ID', 'your-app-id'),
         'client_secret' => env('GITHUB_CLIENT_SECRET', 'your-app-secret'),
-        'callback_url'  => env('GITHUB_CALLBACK_URL', 'http://localhost/api/oauth/callback'),
+        'callback_url' => env('GITHUB_CALLBACK_URL', 'http://localhost/api/oauth/callback'),
     ],
 
     'Docs' => [
-        'Apps'  => [
+        'Apps' => [
             'OauthApp' => [
                 'accessToken' => ['url' => 'https://github.com/login/oauth/access_token'],
-                'user'        => ['url' => 'https://api.github.com/user', 'scope' => ''],
+                'user' => ['url' => 'https://api.github.com/user', 'scope' => ''],
             ],
         ],
         'ApiV3' => [
-            'GitData'      => [
+            'GitData' => [
                 'References' => ['url' => 'https://api.github.com/repos/repos/:owner/:repo/git/refs/:ref'],
             ],
             'Repositories' => [
@@ -33,13 +33,13 @@ return [
 
                 'Contents' => [
                     'readme' => 'https://api.github.com/repos/:owner/:repo/readme',
-                    'get'    => 'https://api.github.com/repos/:owner/:repo/contents/:path',
+                    'get' => 'https://api.github.com/repos/:owner/:repo/contents/:path',
                     'create' => ['url' => 'https://api.github.com/repos/:owner/:repo/contents/:path', 'scope' => 'public_repo'],
                     'update' => ['url' => 'https://api.github.com/repos/:owner/:repo/contents/:path', 'scope' => 'public_repo'],
                     'delete' => ['url' => 'https://api.github.com/repos/:owner/:repo/contents/:path', 'scope' => 'public_repo'],
                 ],
-                'Pages'    => [
-                    'enablePagesSite'  => ['url' => 'https://api.github.com/repos/:owner/:repo/pages', 'scope' => 'public_repo'],
+                'Pages' => [
+                    'enablePagesSite' => ['url' => 'https://api.github.com/repos/:owner/:repo/pages', 'scope' => 'public_repo'],
                     'disablePagesSite' => ['url' => 'https://api.github.com/repos/:owner/:repo/pages', 'scope' => 'public_repo'],
                 ],
             ],
