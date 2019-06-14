@@ -48,7 +48,7 @@ class ReferencesApi extends Api
         $this->authorize('Docs.ApiV3.GitData.References.create', $this->owner);
 
         $this->setHeaders([
-                'Accept'        => 'application/json',
+                'Accept' => 'application/json',
                 'Authorization' => 'Bearer '.$this->githubToken['access_token'],
             ]
         );
