@@ -1,5 +1,9 @@
 <h1 align="center"> EasyGithub </h1>
 
+<p align="center">
+<a href="https://github.styleci.io/repos/191761913"><img src="https://github.styleci.io/repos/191761913/shield?branch=master" alt="StyleCI"></a>
+</p>
+
 ## Installing
 
 ```shell
