@@ -32,16 +32,16 @@ class OAuthAppsAuthorizeApi extends Api
         return $this->request('GET', 'https://api.github.com/user', $args);
     }
 
-    public function oauth($args)
+    public function oauth(...$args)
     {
         $githubToken = $this->accessToken($args)->toArray();
-        $githubUser = $this->user($githubToken)->toArray();
+        $githubUser = $this->user('access_token', $githubToken['access_token'])->toArray();
 
         $username = isset($githubUser['name']) && $githubUser['name'] ? $githubUser['name'] : $githubUser['login'];
 
         $this->setGithubUser($username, $githubToken);
         $this->setGithubToken($username, $githubToken);
 
-        return $this->contents;
+        return $this;
     }
 }

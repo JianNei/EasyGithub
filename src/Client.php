@@ -21,7 +21,7 @@ class Client
 //    protected $repository;
 //    protected $user;
 
-    public function repository($owner, $repo = '')
+    public function repository($owner = '', $repo = '')
     {
         return new RepositoriesApi($owner, $repo);
     }

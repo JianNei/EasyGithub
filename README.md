@@ -33,6 +33,13 @@ $result = app(GithubClient::class)->oauthApp()->accessToken([
 $result = app(GithubClient::class)->oauthApp()->user('access_token', 'xxxxxxx');
 $result = app(GithubClient::class)->oauthApp()->user(['access_token' => 'xxxxxxx'])
 
+// 另一种授权方式（accessToken + user）
+$result = app(GithubClient::class)->oauthApp()->oauth([
+    'code'          => 'oauth code',
+    'client_id'     => 'your oauth app client_id',
+    'client_secret' => 'your oauth app client_secret',
+]);
+
 // 获取用户仓库的 readme 信息
 $result = app(GithubClient::class)->repository()->contents('Jiannei', 'EasyGithub')->readme();
 
@@ -44,7 +51,7 @@ $result = app(GithubClient::class)->repository()->contents('Jiannei', 'EasyGithu
 ]);
 
 // 查找文件（sha）
-$result = app(GithubClient::class)->repository()->contents('Jiannei', 'test', 'test.md')->show();
+$result = app(GithubClient::class)->repository()->contents('Jiannei', 'test', 'test.md')->get();
 
 // 删除文件
 $fileInfo = $result->toArray();// 需要上一步查找文件得到的 sha 值
@@ -66,7 +73,7 @@ $result = app(GithubClient::class)->repository()->pages('Jiannei', 'test')->enab
 $result = app(GithubClient::class)->repository()->pages('Jiannei', 'test')->disable();
 
 // 查询 git data 信息 （Git commit SHA-1 hash）
-$result = app(GithubClient::class)->gitData()->references('JianNei', 'test', 'heads/master')->show();
+$result = app(GithubClient::class)->gitData()->references('JianNei', 'test', 'heads/master')->get();
 
 // 创建仓库
 $result = app(GithubClient::class)->repository('Jiannei')->create([
