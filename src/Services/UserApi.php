@@ -29,10 +29,12 @@ class UserApi extends Api
 
     /**
      * List your repositories
-     * https://developer.github.com/v3/repos/#list-your-repositories
+     * https://developer.github.com/v3/repos/#list-your-repositories.
      *
-     * @param  mixed  ...$args
+     * @param mixed ...$args
+     *
      * @return UserApi
+     *
      * @throws \Jiannei\EasyGithub\Exceptions\HttpException
      */
     public function repos(...$args)
@@ -45,7 +47,6 @@ class UserApi extends Api
         );
         $this->formatOptions('query');
 
-
-        return $this->request('GET', "https://api.github.com/user/repos", $args);
+        return $this->request('GET', 'https://api.github.com/user/repos', $args);
     }
 }

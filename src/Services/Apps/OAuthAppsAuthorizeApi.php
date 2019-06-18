@@ -19,7 +19,7 @@ class OAuthAppsAuthorizeApi extends Api
     public function accessToken($args)
     {
         $this->setHeaders(['Accept' => 'application/json']);
-        $this->formatOptions('form_params',$args);
+        $this->formatOptions('form_params', $args);
 
         return $this->request('POST', 'https://github.com/login/oauth/access_token');
     }

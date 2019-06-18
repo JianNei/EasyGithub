@@ -47,8 +47,8 @@ return [
                 ],
             ],
             'user' => [
-                'repos' => ['url'=>'https://api.github.com/user/repos','scope' => 'public_repo']
-            ]
+                'repos' => ['url' => 'https://api.github.com/user/repos', 'scope' => 'public_repo'],
+            ],
         ],
     ],
 ];

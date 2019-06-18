@@ -34,10 +34,12 @@ class RepositoriesApi extends Api
 
     /**
      * List user repositories
-     * https://developer.github.com/v3/repos/#list-user-repositories
+     * https://developer.github.com/v3/repos/#list-user-repositories.
      *
-     * @param  mixed  ...$args
+     * @param mixed ...$args
+     *
      * @return RepositoriesApi
+     *
      * @throws \Jiannei\EasyGithub\Exceptions\HttpException
      */
     public function all(...$args)
