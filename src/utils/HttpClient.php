@@ -31,7 +31,7 @@ trait HttpClient
     // client
     private $clientOptions = [];
 
-    private $logChannel = 'api';
+    private $logChannel = 'github';
 
     // response
     protected $response = null;
@@ -68,7 +68,7 @@ trait HttpClient
     }
 
     // -------------- client ----------------
-    protected function setLog($name = 'api')
+    protected function setLog($name = 'github')
     {
         $this->logChannel = $name;
     }
