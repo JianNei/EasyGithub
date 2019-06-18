@@ -32,6 +32,22 @@ class RepositoriesApi extends Api
         $this->getGithubToken($this->owner);
     }
 
+    /**
+     * List user repositories
+     * https://developer.github.com/v3/repos/#list-user-repositories
+     *
+     * @param  mixed  ...$args
+     * @return RepositoriesApi
+     * @throws \Jiannei\EasyGithub\Exceptions\HttpException
+     */
+    public function all(...$args)
+    {
+        $this->setHeaders(['Accept' => 'application/json']);
+        $this->formatOptions('query');
+
+        return $this->request('GET', "https://api.github.com/users/{$this->owner}/repos", $args);
+    }
+
     public function create($args)
     {
         $this->authorize('Docs.ApiV3.Repositories.create', $this->owner);

@@ -46,6 +46,9 @@ return [
                     'disablePagesSite' => ['url' => 'https://api.github.com/repos/:owner/:repo/pages', 'scope' => 'public_repo'],
                 ],
             ],
+            'user' => [
+                'repos' => ['url'=>'https://api.github.com/user/repos','scope' => 'public_repo']
+            ]
         ],
     ],
 ];

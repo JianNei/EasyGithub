@@ -13,6 +13,7 @@ namespace Jiannei\EasyGithub\utils;
 
 use GuzzleHttp\Client;
 use Jiannei\EasyGithub\Exceptions\HttpException;
+use Log;
 
 trait HttpClient
 {
@@ -108,8 +109,7 @@ trait HttpClient
 
     private function log(array $something, $type = 'response')
     {
-        // error_log("{$type}: ".json_encode($something), 3, 'api.log');
-        //Log::channel($this->logChannel)->info($type, $something);
+        Log::channel($this->logChannel)->info($type, $something);
     }
 
     //  -------------------- response

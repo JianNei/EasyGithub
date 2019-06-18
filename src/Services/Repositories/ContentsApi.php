@@ -39,13 +39,15 @@ class ContentsApi extends Api
         $this->getGithubToken($this->owner);
     }
 
-    private function setCustomMedia($type = '')
+    public function setCustomMedia($type = '')
     {
         if (in_array($type, ['object', 'raw', 'html'])) {
             $this->customMediaType = "application/vnd.github.VERSION.{$type}";
         }
 
         $this->customMediaType = "application/vnd.github.VERSION.{$this->customMediaType}";
+
+        return $this;
     }
 
     public function get(...$args)

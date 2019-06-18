@@ -27,11 +27,25 @@ class UserApi extends Api
         $this->username = $username;
     }
 
+    /**
+     * List your repositories
+     * https://developer.github.com/v3/repos/#list-your-repositories
+     *
+     * @param  mixed  ...$args
+     * @return UserApi
+     * @throws \Jiannei\EasyGithub\Exceptions\HttpException
+     */
     public function repos(...$args)
     {
-        $this->setHeaders(['Accept' => 'application/json']);
+        $this->authorize('Docs.ApiV3.user.repos', $this->username);
+        $this->setHeaders([
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer '.$this->githubToken['access_token'],
+            ]
+        );
         $this->formatOptions('query');
 
-        return $this->request('GET', "https://api.github.com/users/{$this->username}/repos", $args);
+
+        return $this->request('GET', "https://api.github.com/user/repos", $args);
     }
 }
