@@ -94,7 +94,8 @@ trait HttpClient
             $this->log(['uri' => $uri, 'method' => $method, 'options' => $this->options], 'request');
 
             $this->response = $this->buildClient()->request($method, $uri, $this->options);
-        } catch (\GuzzleHttp\Exception\ConnectException $e) {
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+            $this->log(['errors'=>$e->getMessage()], 'response');
             throw new HttpException($e->getMessage(), 0, $e);
         }
 
@@ -109,7 +110,8 @@ trait HttpClient
 
     private function log(array $something, $type = 'response')
     {
-        Log::channel($this->logChannel)->info($type, $something);
+        // error_log("{$type}: ".json_encode($something), 3, 'github.log');
+        Log::channel($this->logChannel)->debug($type, $something);
     }
 
     //  -------------------- response
