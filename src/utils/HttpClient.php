@@ -95,7 +95,8 @@ trait HttpClient
 
             $this->response = $this->buildClient()->request($method, $uri, $this->options);
         } catch (\GuzzleHttp\Exception\RequestException $e) {
-            $this->log(['errors'=>$e->getMessage()], 'response');
+            $this->log(['errors' => $e->getMessage()], 'response');
+
             throw new HttpException($e->getMessage(), 0, $e);
         }
 
