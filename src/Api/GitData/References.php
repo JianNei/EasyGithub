@@ -15,5 +15,4 @@ use Jiannei\EasyGithub\Api;
 
 class References extends Api
 {
-
 }

@@ -18,9 +18,9 @@ class Api
     protected function buildHttpClient($options = [])
     {
         $defaultConfig = [
-            'Accept'     => 'application/vnd.github.v3+json',
+            'Accept' => 'application/vnd.github.v3+json',
             'User-Agent' => 'EasyGithub',
-            'Time-Zone'  => 'Asia/Shanghai',
+            'Time-Zone' => 'Asia/Shanghai',
         ];
 
         return Client::create(array_merge($defaultConfig, $options));

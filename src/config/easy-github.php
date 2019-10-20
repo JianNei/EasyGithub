@@ -11,8 +11,8 @@
 
 return [
     'oauthApp' => [
-        'client_id'     => env('GITHUB_CLIENT_ID', 'your-app-id'),
+        'client_id' => env('GITHUB_CLIENT_ID', 'your-app-id'),
         'client_secret' => env('GITHUB_CLIENT_SECRET', 'your-app-secret'),
-        'callback_url'  => env('GITHUB_CALLBACK_URL', 'http://localhost/api/oauth/callback'),
+        'callback_url' => env('GITHUB_CALLBACK_URL', 'http://localhost/api/oauth/callback'),
     ],
 ];

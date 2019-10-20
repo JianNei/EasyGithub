@@ -21,11 +21,13 @@ class GithubClient
     public function api($name)
     {
         switch ($name) {
-            case "repositories":
+            case 'repositories':
                 $api = new Repositories();
+
                 break;
-            case "apps":
+            case 'apps':
                 $api = new OAuthApps();
+
                 break;
             default:
                 throw new InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name));

@@ -21,12 +21,11 @@ class OAuthApps extends Api
     {
         return $this->buildHttpClient([
             'base_uri' => $this->baseUri,
-        ])->withHeaders(['Accept' => 'application/json',])
+        ])->withHeaders(['Accept' => 'application/json'])
             ->post('/login/oauth/access_token', $params);
     }
 
     public function authorizedUser()
     {
-
     }
 }

@@ -21,13 +21,13 @@ class Repositories extends Api
     {
         return $this->buildHttpClient([
             'base_uri' => $this->baseUri,
-        ])->get("/user/repos", $params);
+        ])->get('/user/repos', $params);
     }
 
     public function listUserRepositories($username, $params = [])
     {
         return $this->buildHttpClient([
             'base_uri' => $this->baseUri,
-        ])->get("/users/".rawurlencode($username)."/repos", $params);
+        ])->get('/users/'.rawurlencode($username).'/repos', $params);
     }
 }
