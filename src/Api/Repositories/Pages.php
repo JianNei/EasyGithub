@@ -9,14 +9,10 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Jiannei\EasyGithub\Services\GitData;
+namespace Jiannei\EasyGithub\Api\Repositories;
 
 use Jiannei\EasyGithub\Api;
 
-class GitDataApi extends Api
+class Pages extends Api
 {
-    public function references($owner, $repo, $ref = '')
-    {
-        return new ReferencesApi($owner, $repo, $ref);
-    }
 }

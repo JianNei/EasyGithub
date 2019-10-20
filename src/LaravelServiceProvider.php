@@ -11,7 +11,7 @@
 
 namespace Jiannei\EasyGithub\Providers;
 
-use Jiannei\EasyGithub\Client as GithubClient;
+use Jiannei\EasyGithub\GithubClient;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelServiceProvider extends ServiceProvider

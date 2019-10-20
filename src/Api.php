@@ -11,21 +11,18 @@
 
 namespace Jiannei\EasyGithub;
 
-use Jiannei\EasyGithub\utils\HttpClient;
-use Jiannei\EasyGithub\utils\OauthTrait;
+use Jiannei\Http\Client;
 
 class Api
 {
-    use HttpClient;
-    use OauthTrait;
-
-    protected function setHeaders($headers)
+    protected function buildHttpClient($options = [])
     {
-        $default_headers = [
-            'Accept' => 'application/vnd.github.v3+json',
+        $defaultConfig = [
+            'Accept'     => 'application/vnd.github.v3+json',
             'User-Agent' => 'EasyGithub',
-            'Time-Zone' => 'Asia/Shanghai',
+            'Time-Zone'  => 'Asia/Shanghai',
         ];
-        $this->options = array_merge($this->options, ['headers' => array_merge($default_headers, $headers)]);
+
+        return Client::create(array_merge($defaultConfig, $options));
     }
 }

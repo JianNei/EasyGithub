@@ -12,95 +12,40 @@ $ composer require jiannei/easy-github -vvv
 
 ## Usage
 
+### 测试准备
+
+* 在 web 服务器创建 test 目录和测试使用的 index.php 文件
+
+```
+// xxx/xxx/test/index.php
+require __DIR__.'/vendor/autoload.php';
+
+use Jiannei\EasyGithub\GithubClient;
+
+$githubClient = new GithubClient();
+```
+
+#### 授权测试参考流程
+
+* `settings -> Oauth Apps -> Authorization callback URL` 配置成本地测试地址
+* 访问 `https://github.com/login/oauth/authorize?client_id=YOUR_OAUTH_APP_CLINET_ID`
+* 将以下测试代码添加到测试文件，访问 `index.php`，将得到授权成功返回的 access_token
+
+```
+if (isset($_GET['code'])) {
+    $response = $githubClient->api('apps')->getAccessToken([
+        'client_id'     => 'your oauth apps client_id',
+        'client_secret' => 'your oauth apps client_secret',
+        'code'          => $_GET['code'],
+    ]);
+    var_export($response->body());
+}
+
+echo '<br />testing...';
+```
+
 ### For Laravel
 
-**config**
-
-```
-php artisan vendor:publish --provider="Jiannei\EasyGithub\Providers\LaravelServiceProvider"
-```
-
-**create/delete 方法参数只支持数组**
-
-```php
-use Jiannei\EasyGithub\Client as GithubClient;
-
-// 获取某用户的所有仓库 
-$result = app(GithubClient::class)->user('Jiannei')->repos();
-
-// Oauth Apps 授权
-$result = app(GithubClient::class)->oauthApp()->accessToken([
-    'code'          => 'oauth code',// Github 返回的授权码
-    'client_id'     => 'your oauth app client_id',// Github Oauth app
-    'client_secret' => 'your oauth app client_secret',// Github Oauth app
-]);
-
-// 获取当前授权的用户信息
-$result = app(GithubClient::class)->oauthApp()->user('access_token', 'xxxxxxx');
-$result = app(GithubClient::class)->oauthApp()->user(['access_token' => 'xxxxxxx'])
-
-// 另一种授权方式（accessToken + user）
-$result = app(GithubClient::class)->oauthApp()->oauth([
-    'code'          => 'oauth code',
-    'client_id'     => 'your oauth app client_id',
-    'client_secret' => 'your oauth app client_secret',
-]);
-
-// 获取用户仓库的 readme 信息
-$result = app(GithubClient::class)->repository()->contents('Jiannei', 'EasyGithub')->readme();
-
-// 在仓库下创建文件
-$result = app(GithubClient::class)->repository()->contents('Jiannei', 'EasyGithub', 'test.md')->create([
-    'message' => '测试',
-    'content' => base64_encode('# 测试'),
-    'branch'  => 'master',
-]);
-
-// 查找文件（sha）
-$result = app(GithubClient::class)->repository()->contents('Jiannei', 'test', 'test.md')->get();
-
-// 删除文件
-$fileInfo = $result->toArray();// 需要上一步查找文件得到的 sha 值
-$result = app(GithubClient::class)->repository()->contents('Jiannei', 'test', 'test.md')->delete([
-    'message' => 'delete',
-    'sha'     => $fileInfo['sha'],
-    'branch'  => 'master',
-]);
-
-// 启用 page site
-$result = app(GithubClient::class)->repository()->pages('Jiannei', 'test')->enable([
-    'source' => [
-        'branch' => 'master',
-        'path'   => '/docs',
-    ],
-]);
-
-// 禁用 page site
-$result = app(GithubClient::class)->repository()->pages('Jiannei', 'test')->disable();
-
-// 查询 git data 信息 （Git commit SHA-1 hash）
-$result = app(GithubClient::class)->gitData()->references('JianNei', 'test', 'heads/master')->get();
-
-// 创建仓库
-$result = app(GithubClient::class)->repository('Jiannei')->create([
-    'name'        => 'Hello-World',
-    "description" => "This is your first repository",
-]);
-
-// 删除仓库
- $result = app(GithubClient::class)->repository('Jiannei','Hello-World')->delete();
-
-// 创建分支
-$result = app(GithubClient::class)->gitData()->references('JianNei', 'test', 'heads/master')->get();
-$res = $result->toArray();
-$result = app(GithubClient::class)->gitData()->references('Jiannei', 'test', 'heads/master')->create([
-    'ref' => 'refs/heads/gh-pages',
-    'sha' => $res['object']['sha'],
-]);
-
-
-dd($result->toArray());
-```
 
 ## Contributing
 
