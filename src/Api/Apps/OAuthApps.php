@@ -15,17 +15,18 @@ use Jiannei\EasyGithub\Api;
 
 class OAuthApps extends Api
 {
-    private $baseUri = 'https://github.com';
-
     public function getAccessToken(array $params)
     {
-        return $this->buildHttpClient([
-            'base_uri' => $this->baseUri,
-        ])->withHeaders(['Accept' => 'application/json'])
-            ->post('/login/oauth/access_token', $params);
+        return $this->buildHttpClient()->withHeaders(['Accept' => 'application/json'])
+            ->post('https://github.com/login/oauth/access_token', $params);
     }
 
-    public function authorizedUser()
+    public function getAuthenticatedUser($accessToken)
     {
+        return $this->buildHttpClient()->withHeaders([
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer ' . $accessToken,
+        ])
+            ->get('https://api.github.com/user');
     }
 }

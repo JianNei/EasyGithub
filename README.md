@@ -34,14 +34,14 @@ $githubClient = new GithubClient();
 ```
 if (isset($_GET['code'])) {
     $response = $githubClient->api('apps')->getAccessToken([
-        'client_id'     => 'your oauth apps client_id',
-        'client_secret' => 'your oauth apps client_secret',
+        'client_id'     => 'YOUR_OAUTH_APP_CLINET_ID',
+        'client_secret' => 'YOUR_OAUTH_APP_CLINET_SECRET',
         'code'          => $_GET['code'],
     ]);
     var_export($response->body());
+}else{
+    echo '<br />testing...';
 }
-
-echo '<br />testing...';
 ```
 
 ### For Laravel
