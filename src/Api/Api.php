@@ -23,7 +23,7 @@ abstract class Api
     {
         return tap($this, function () use ($accessToken) {
             $this->httpClient->withHeaders([
-                'Authorization' => 'Bearer ' . $accessToken,
+                'Authorization' => 'Bearer '.$accessToken,
             ]);
         });
     }
