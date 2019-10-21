@@ -25,7 +25,7 @@ class OAuthApps extends Api
     {
         return $this->buildHttpClient()->withHeaders([
             'Accept' => 'application/json',
-            'Authorization' => 'Bearer ' . $accessToken,
+            'Authorization' => 'Bearer '.$accessToken,
         ])
             ->get('https://api.github.com/user');
     }
