@@ -16,6 +16,15 @@ abstract class Api
             'Time-Zone' => 'Asia/Shanghai',
         ];
 
-        return $this->httpClient = Client::create(array_merge($defaultConfig, $options));
+        $this->httpClient = Client::create(array_merge($defaultConfig, $options));
+    }
+
+    public function authorize($accessToken)
+    {
+        return tap($this, function () use ($accessToken) {
+            $this->httpClient->withHeaders([
+                'Authorization' => 'Bearer ' . $accessToken,
+            ]);
+        });
     }
 }

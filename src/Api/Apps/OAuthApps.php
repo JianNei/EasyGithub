@@ -12,22 +12,17 @@
 namespace Jiannei\EasyGithub\Api\Apps;
 
 use Jiannei\EasyGithub\Api\Api;
-use Jiannei\EasyGithub\Traits\OauthApp\Authenticatable;
 
 class OAuthApps extends Api
 {
-    use Authenticatable;
-
     public function getAccessToken(array $params)
     {
         return $this->httpClient->withHeaders(['Accept' => 'application/json'])
             ->post('https://github.com/login/oauth/access_token', $params);
     }
 
-    public function getAuthenticatedUser($accessToken)
+    public function getAuthenticatedUser()
     {
-        $this->authorize($accessToken);
-
         return $this->httpClient->get('https://api.github.com/user');
     }
 }
