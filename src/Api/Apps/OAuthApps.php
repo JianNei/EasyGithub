@@ -14,7 +14,6 @@ namespace Jiannei\EasyGithub\Api\Apps;
 use Jiannei\EasyGithub\Api;
 use Jiannei\EasyGithub\Traits\OauthApp\Authenticatable;
 
-
 class OAuthApps extends Api
 {
     use Authenticatable;
