@@ -12,7 +12,16 @@
 namespace Jiannei\EasyGithub\Api;
 
 use Jiannei\EasyGithub\Api;
+use Jiannei\EasyGithub\Traits\OauthApp\Authenticatable;
 
 class User extends Api
 {
+    use Authenticatable;
+
+    public function repos($accessToken, $params = [])
+    {
+        $this->authorize($accessToken);
+
+        return $this->httpClient->get('https://api.github.com/user/repos', $params);
+    }
 }

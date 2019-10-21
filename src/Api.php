@@ -15,7 +15,9 @@ use Jiannei\Http\Client;
 
 class Api
 {
-    protected function buildHttpClient($options = [])
+    protected $httpClient;
+
+    public function __construct($options = [])
     {
         $defaultConfig = [
             'Accept' => 'application/vnd.github.v3+json',
@@ -23,6 +25,6 @@ class Api
             'Time-Zone' => 'Asia/Shanghai',
         ];
 
-        return Client::create(array_merge($defaultConfig, $options));
+        return $this->httpClient = Client::create(array_merge($defaultConfig, $options));
     }
 }

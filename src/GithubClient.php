@@ -13,6 +13,7 @@ namespace Jiannei\EasyGithub;
 
 use Jiannei\EasyGithub\Api\Apps\OAuthApps;
 use Jiannei\EasyGithub\Api\Repositories\Repositories;
+use Jiannei\EasyGithub\Api\User;
 use Jiannei\EasyGithub\Exceptions\BadMethodCallException;
 use Jiannei\EasyGithub\Exceptions\InvalidArgumentException;
 
@@ -21,11 +22,15 @@ class GithubClient
     public function api($name)
     {
         switch ($name) {
+            case 'user':
+                $api = new User();
+
+                break;
             case 'repositories':
                 $api = new Repositories();
 
                 break;
-            case 'apps':
+            case 'oauthApps':
                 $api = new OAuthApps();
 
                 break;

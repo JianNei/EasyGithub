@@ -15,19 +15,5 @@ use Jiannei\EasyGithub\Api;
 
 class Repositories extends Api
 {
-    private $baseUri = 'https://api.github.com';
 
-    public function listYourRepositories(array $params)
-    {
-        return $this->buildHttpClient([
-            'base_uri' => $this->baseUri,
-        ])->get('/user/repos', $params);
-    }
-
-    public function listUserRepositories($username, $params = [])
-    {
-        return $this->buildHttpClient([
-            'base_uri' => $this->baseUri,
-        ])->get('/users/'.rawurlencode($username).'/repos', $params);
-    }
 }
