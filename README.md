@@ -33,7 +33,7 @@ $githubClient = new GithubClient();
 
 ```
 if (isset($_GET['code'])) {
-    $response = $githubClient->api('apps')->getAccessToken([
+    $response = $githubClient->api('oauthApps')->getAccessToken([
         'client_id'     => 'YOUR_OAUTH_APP_CLINET_ID',
         'client_secret' => 'YOUR_OAUTH_APP_CLINET_SECRET',
         'code'          => $_GET['code'],

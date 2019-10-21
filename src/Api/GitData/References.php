@@ -11,7 +11,7 @@
 
 namespace Jiannei\EasyGithub\Api\GitData;
 
-use Jiannei\EasyGithub\Api;
+use Jiannei\EasyGithub\Api\Api;
 
 class References extends Api
 {

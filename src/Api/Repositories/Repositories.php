@@ -11,7 +11,7 @@
 
 namespace Jiannei\EasyGithub\Api\Repositories;
 
-use Jiannei\EasyGithub\Api;
+use Jiannei\EasyGithub\Api\Api;
 
 class Repositories extends Api
 {
