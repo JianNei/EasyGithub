@@ -2,7 +2,6 @@
 
 namespace Jiannei\EasyGithub\Api;
 
-
 use Jiannei\Http\Client;
 
 abstract class Api
