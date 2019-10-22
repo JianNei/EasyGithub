@@ -17,7 +17,7 @@ class Contents extends Api
 {
     public function store($owner, $repo, $path, $params)
     {
-        return $this->httpClient->put('https://api.github.com/repos/' . rawurlencode($owner) . '/' . rawurlencode($repo) . '/contents/' . rawurlencode($path),
+        return $this->httpClient->put('https://api.github.com/repos/'.rawurlencode($owner).'/'.rawurlencode($repo).'/contents/'.rawurlencode($path),
             $params);
     }
 }
