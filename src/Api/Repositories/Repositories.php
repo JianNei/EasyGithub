@@ -15,4 +15,13 @@ use Jiannei\EasyGithub\Api\Api;
 
 class Repositories extends Api
 {
+    public function store($params)
+    {
+        return $this->httpClient->post('https://api.github.com/user/repos', $params);
+    }
+
+    public function destroy($owner, $repo)
+    {
+        return $this->httpClient->delete('https://api.github.com/repos/' . rawurlencode($owner) . '/' . rawurlencode($repo));
+    }
 }
