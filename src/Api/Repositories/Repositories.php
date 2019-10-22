@@ -22,6 +22,6 @@ class Repositories extends Api
 
     public function destroy($owner, $repo)
     {
-        return $this->httpClient->delete('https://api.github.com/repos/' . rawurlencode($owner) . '/' . rawurlencode($repo));
+        return $this->httpClient->delete('https://api.github.com/repos/'.rawurlencode($owner).'/'.rawurlencode($repo));
     }
 }
