@@ -12,6 +12,7 @@
 namespace Jiannei\EasyGithub;
 
 use Jiannei\EasyGithub\Api\Apps\OAuthApps;
+use Jiannei\EasyGithub\Api\Repositories\Contents;
 use Jiannei\EasyGithub\Api\Repositories\Repositories;
 use Jiannei\EasyGithub\Api\User;
 use Jiannei\EasyGithub\Exceptions\BadMethodCallException;
@@ -28,6 +29,10 @@ class GithubClient
                 break;
             case 'repositories':
                 $api = new Repositories();
+
+                break;
+            case 'contents':
+                $api = new Contents();
 
                 break;
             case 'oauthApps':
