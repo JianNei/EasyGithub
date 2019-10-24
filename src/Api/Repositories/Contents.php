@@ -37,6 +37,7 @@ class Contents extends Api
     {
         $content = $this->show($owner, $repo, $path, $params)->json();
         $params['sha'] = $content['sha'];
+
         return $this->httpClient->put('https://api.github.com/repos/'.rawurlencode($owner).'/'.rawurlencode($repo).'/contents/'.rawurlencode($path),
             $params);
     }
@@ -45,6 +46,7 @@ class Contents extends Api
     {
         $content = $this->show($owner, $repo, $path, $params)->json();
         $params['sha'] = $content['sha'];
+
         return $this->httpClient->delete('https://api.github.com/repos/'.rawurlencode($owner).'/'.rawurlencode($repo).'/contents/'.rawurlencode($path),
             $params);
     }
