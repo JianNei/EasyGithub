@@ -35,12 +35,16 @@ class Contents extends Api
 
     public function update($owner, $repo, $path, $params)
     {
+        $content = $this->show($owner, $repo, $path, $params)->json();
+        $params['sha'] = $content['sha'];
         return $this->httpClient->put('https://api.github.com/repos/'.rawurlencode($owner).'/'.rawurlencode($repo).'/contents/'.rawurlencode($path),
             $params);
     }
 
     public function destroy($owner, $repo, $path, $params)
     {
+        $content = $this->show($owner, $repo, $path, $params)->json();
+        $params['sha'] = $content['sha'];
         return $this->httpClient->delete('https://api.github.com/repos/'.rawurlencode($owner).'/'.rawurlencode($repo).'/contents/'.rawurlencode($path),
             $params);
     }
