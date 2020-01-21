@@ -24,4 +24,18 @@ class Repositories extends Api
     {
         return $this->httpClient->delete('https://api.github.com/repos/'.rawurlencode($owner).'/'.rawurlencode($repo));
     }
+
+    public function show($owner, $repo)
+    {
+        return $this->httpClient->get('https://api.github.com/repos/'.rawurlencode($owner).'/'.rawurlencode($repo));
+    }
+
+    public function createWithTemplate($templateOwner, $templateRepo, $params)
+    {
+        return $this->httpClient
+            ->withHeaders([
+                'Accept' => 'application/vnd.github.baptiste-preview+json'
+            ])
+            ->post('https://api.github.com/repos/'.rawurlencode($templateOwner).'/'.rawurlencode($templateRepo).'/generate', $params);
+    }
 }
