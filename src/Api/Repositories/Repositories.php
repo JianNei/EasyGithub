@@ -34,7 +34,7 @@ class Repositories extends Api
     {
         return $this->httpClient
             ->withHeaders([
-                'Accept' => 'application/vnd.github.baptiste-preview+json'
+                'Accept' => 'application/vnd.github.baptiste-preview+json',
             ])
             ->post('https://api.github.com/repos/'.rawurlencode($templateOwner).'/'.rawurlencode($templateRepo).'/generate', $params);
     }
