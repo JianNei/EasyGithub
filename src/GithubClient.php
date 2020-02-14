@@ -11,6 +11,7 @@
 
 namespace Jiannei\EasyGithub;
 
+use Jiannei\EasyGithub\Api\Actions\Secrets;
 use Jiannei\EasyGithub\Api\Apps\OAuthApps;
 use Jiannei\EasyGithub\Api\Repositories\Contents;
 use Jiannei\EasyGithub\Api\Repositories\Repositories;
@@ -23,6 +24,10 @@ class GithubClient
     public function api($name)
     {
         switch ($name) {
+            case 'secrets':
+                $api = new Secrets();
+
+                break;
             case 'user':
                 $api = new User();
 

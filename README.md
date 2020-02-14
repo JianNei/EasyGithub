@@ -44,6 +44,53 @@ if (isset($_GET['code'])) {
 }
 ```
 
+#### Github Action Secrets
+
+- 获取 public_key
+
+```
+// 需要事先获取到授权 $accessToken
+$response = $githubClient->api('secrets')->authorize($accessToken)->publicKey("Jiannei","vuepress-blog-demo");
+```
+
+- 获取全部的 secret
+
+```
+// 需要事先获取到授权 $accessToken
+$response = $githubClient->api('secrets')->authorize($accessToken)->all("Jiannei","vuepress-blog-demo");
+```
+
+- 获取指定的 secret
+
+```
+// 需要事先获取到授权 $accessToken
+$response = $githubClient->api('secrets')->authorize($accessToken)->show("Jiannei","vuepress-blog-demo",'ACCESS_TOKEN');
+```
+
+- 创建或更新 secret
+
+```
+// 需要事先获取到授权 $accessToken + 获取 public_key
+$keypair = [
+    'key_id' => 'your key_id',// 调用获取 public_key 接口得到的 key_id
+    'key' => 'your key',// 调用获取 public_key 接口得到的 key
+];
+
+$params = [
+    'value' => 'hello,world',// 新增/更新的 secret 值
+    'name' => 'TEST'// secret 名称
+];
+
+// $response = $githubClient->api('secrets')->authorize($accessToken)->store("Jiannei", "vuepress-blog-demo", $keypair, $params);
+```
+
+- 删除 secret（测试未通过)
+
+```
+// 需要事先获取到授权 $accessToken
+$response = $githubClient->api('secrets')->authorize($accessToken)->destroy("Jiannei","vuepress-blog-demo",'TEST');
+```
+
 ### For Laravel
 
 
